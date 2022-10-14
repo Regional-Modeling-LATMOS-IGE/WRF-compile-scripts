@@ -1,0 +1,12 @@
+#---- WRF/WRF-Chem compilation scripts for the spirit cluster at ESPRI/IPSL
+#
+# Louis Marelle, 2022/10/14
+
+These compilation scripts are machine-specific and developped for spirit.
+
+If the file system or modules on this machine are updated they might no
+longer work.
+
+These scripts can be adapted for different machines by changing the modules
+and library paths, and the job management instructions (here SLURM/SBATCH
+instructions) if a different queue system is used.

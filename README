@@ -1,0 +1,14 @@
+#---- WRF/WRF-Chem compilation scripts
+#
+# Louis Marelle, 2022/10/14
+
+These compilation scripts are machine-specific.
+jeanzay-cluster/ - Scripts for the jean-zay cluster at IDRIS
+spirit-cluster/ - Scripts for the spirit cluster at ESPRI/IPSL
+
+If the file system or modules on these machines are updated they might no
+longer work.
+
+These scripts can be adapted for different machines by changing the modules
+and library paths, and the job management instructions if a different queue
+system is used.

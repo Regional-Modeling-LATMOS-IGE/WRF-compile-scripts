@@ -1,0 +1,31 @@
+#---- Compilation scripts for WRF-Chem preprocessors for the spirit IPSL cluster
+#
+# Louis Marelle, 2022/10/14
+
+Compilation scripts should be copied in each preprocessor's source code
+directory and then run with e.g.:
+./compile_fire_emis.sh
+
+For compilation on spirit/jean-zay clusters, a modified version of the
+processor code need to be downloaded from the Regional-Modeling-LATMOS-IGE
+github
+
+The original preprocessor code is from the Atmospheric Chemistry Observations
+and Modeling Lab (ACOM) of NCAR, see:
+https://www.acom.ucar.edu/wrf-chem/download.shtml
+https://www.acom.ucar.edu/Data/fire/
+
+- mozbc
+  Preprocessor for chemical/aerosol initial and boundary conditions,
+  interpolating global model fields from MOZART4 or CAM-Chem to the WRF-Chem
+  grid
+- megan_bio_emiss
+  Preprocessor for MEGAN bio emissions in WRF-Chem, used between 2 calls of
+  real.exe to include additional vegetation data in  wrfinput files 
+- wes-coldens
+  Preprocessor for setting up parameters for photolysis (exo_coldens) and dry
+  deposition (wesely) for MOZART gas-phase mechanisms in WRF-Chem
+- fire_emis
+  Preprocessor for creating wrffirechemi fire emission input files for WRF-Chem
+  from FINN emissions
+

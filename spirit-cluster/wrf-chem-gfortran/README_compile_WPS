@@ -1,0 +1,42 @@
+#---- Instructions for compiling WPS4 on spirit
+#
+# Louis Marelle, 2022/09/30
+
+If you already compiled WPS4 for WRF4, you don't need to recompile it for WRF-Chem4
+
+When compiling WPS, WRF should already be compiled and available in (for
+example) ~/WRF/src/WRF-Chem-Polar
+
+Obtain the WPS code from https://github.com/wrf-model/WPS
+ cd ~/WRF/src
+ git clone https://github.com/wrf-model/WPS.git
+
+Clean up the code
+ cd ~/WRF/src/WPS
+ ./clean -a
+ ./clean -aa
+
+Copy the WPS compilation scripts from here to the WPS code folder
+ cp <path_to_here>/*WPS*sh ~/WRF/src/WPS
+
+Set WRF_DIR, the path to WRF, for WPS compilation, for example
+ export WRF_DIR=~/WRF/src/WRF-Chem-Polar/WRFV4
+
+Launch the compilation. The script also sets up compilation options and
+environment variables, and loads GNU and NetCDF libraries, compiling the model
+with option gfortran compiler + dmpar (3). The exact same libraries will have
+to be loaded every time a simulation is launched.
+ source compile_WPS.sh
+
+You can check the status of the compilation in file compile.log
+
+When the compilation is over, links to the following executables will be
+created at the base WPS directory.
+geogrid.exe, ungrib.exe, metgrid.exe
+If the executables are missing, the compilation failed, check compile.log for
+more info on the error
+
+In order to rum, WPS needs additional geographic data available at
+https://www2.mmm.ucar.edu/wrf/users/download/get_sources_wps_geog.html
+The data is already available on CICLAD at /data/marelle/WRFChem/WPS_DATA/geog_wrf4
+

@@ -1,0 +1,58 @@
+#---- Instructions for compiling WRF4 on the spirit IPSL cluster
+#
+# Louis Marelle, 2022/10/04
+
+Create a space for the WRF source code on your home
+ mkdir ~/WRF
+ mkdir ~/WRF/src
+ mkdir ~/WRF/src/WRF-Chem-Polar
+
+Obtain the WRF code from
+https://github.com/Regional-Modeling-LATMOS-IGE/WRF-Chem-Polar. You only need
+to do this one, not every time you recompile.
+ cd ~/WRF/src/WRF-Chem-Polar
+ git clone https://github.com/Regional-Modeling-LATMOS-IGE/WRF-Chem-Polar.git WRFV4
+If you do not plan to develop the model and do not have a lot of space on your
+home , you can get a lighter version of the code with --depth=1
+ git clone --depth=1 https://github.com/Regional-Modeling-LATMOS-IGE/WRF-Chem-Polar.git WRFV4
+If you want to access the development version, ask me (Louis Marelle) for the
+github adress of the development version and replace it in the instructions
+above.
+
+Clean up the code
+cd ~/WRF/src/WRF-Chem-Polar/WRFV4
+./clean -a
+
+Switch to the model git branch containing polar updates
+ git checkout develop_polar
+Or switch to your branch of interest. You can list all our development branches with
+ git branch | grep 'dev/'
+Then
+ git checkout <branch_name>
+
+Copy the WRF compilation scripts from here to the WRF code folder
+ cp <path_to_here>/compile*WRF*sh ~/WRF/src/WRF-Chem-Polar/WRFV4/
+
+
+------------- Compile WRF from scratch (clean compilation) ------------
+Launch the compilation jobscript
+ sbatch compile_WRF.sh
+This script loads libraries, sets up compilation options, cleans any previous
+installation files and executables in main/, and runs the compilation script in
+the cluster queue
+
+You can check the status of the compilation with
+ tail -f compile.log
+
+When the compilation is over, if everything went fine wrf.exe and real.exe
+should be present in main/ and compile.log should contain this line at the end:
+'  --->                  Executables successfully built                  <---'
+
+I recommend copying wrf.exe and real.exe from main/ to
+~/WRF/src/WRF-Chem-Polar/executables
+so that you do not accidentally overwrite them later when recompiling and can
+keep past executables for rerunning a past simulation with the exact same
+version.
+
+In order to set up and run a WRF simulation you will also need to install
+WPS (see WPS compilation README)
