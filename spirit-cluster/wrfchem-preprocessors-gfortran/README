@@ -2,19 +2,24 @@
 #
 # Louis Marelle, 2022/10/14
 
-Compilation scripts should be copied in each preprocessor's source code
-directory and then run with e.g.:
-./compile_fire_emis.sh
-
 For compilation on spirit/jean-zay clusters, a modified version of the
-processor code need to be downloaded from the Regional-Modeling-LATMOS-IGE
-github
-
-The original preprocessor code is from the Atmospheric Chemistry Observations
-and Modeling Lab (ACOM) of NCAR, see:
+preprocessor code can be retrieved from my home space
+cp -rf /home/marelle/WRF/src/wrfchem-preprocessors-dev ~/WRF/src/
+This code cannot be rehosted publically so it is unfortunately not in the
+public Regional-Modeling-LATMOS-IGE github. The original preprocessor code is
+from the Atmospheric Chemistry Observations and Modeling Lab (ACOM) of NCAR,
+see:
 https://www.acom.ucar.edu/wrf-chem/download.shtml
 https://www.acom.ucar.edu/Data/fire/
 
+Compilation scripts should be copied in each preprocessor's source code
+directory and then run, e.g. for fire_emis:
+cp compile_fire_emis.sh ~/WRF/src/wrfchem-preprocessors-dev/fire_emis/
+cd ~/WRF/src/wrfchem-preprocessors-dev/fire_emis/
+./compile_fire_emis.sh
+
+
+The preprocessors that need to be compiled are:
 - mozbc
   Preprocessor for chemical/aerosol initial and boundary conditions,
   interpolating global model fields from MOZART4 or CAM-Chem to the WRF-Chem

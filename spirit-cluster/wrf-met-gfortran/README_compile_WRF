@@ -1,6 +1,6 @@
 #---- Instructions for compiling WRF4 on the spirit IPSL cluster
 #
-# Louis Marelle, 2022/10/04
+# Louis Marelle, 2023/12/15
 
 Create a space for the WRF source code on your home
  mkdir ~/WRF
@@ -50,6 +50,9 @@ should be present in main/ and compile.log should contain this line at the end:
 
 I recommend copying wrf.exe and real.exe from main/ to
 ~/WRF/src/WRF-Chem-Polar/executables
+e.g.:
+cp main/wrf.exe ~/WRF/src/WRF-Chem-Polar/executables/wrf.exe.met
+cp main/real.exe ~/WRF/src/WRF-Chem-Polar/executables/real.exe.met
 so that you do not accidentally overwrite them later when recompiling and can
 keep past executables for rerunning a past simulation with the exact same
 version.
